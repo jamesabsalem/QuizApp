@@ -12,8 +12,8 @@ using QuizApp.Api.Data;
 namespace QuizApp.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231117170013_createTable")]
-    partial class createTable
+    [Migration("20231117172842_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,8 +102,8 @@ namespace QuizApp.Api.Migrations
 
                     b.Property<string>("QuestionTypeName")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("QuestionTypeId");
 

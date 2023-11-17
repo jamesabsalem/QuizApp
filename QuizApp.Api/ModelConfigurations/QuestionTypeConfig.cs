@@ -12,7 +12,7 @@ namespace QuizApp.Api.ModelConfigurations
 
             builder.HasKey(q => q.QuestionTypeId);
 
-            builder.Property(q => q.QuestionTypeName).HasMaxLength(10).IsRequired();
+            builder.Property(q => q.QuestionTypeName).HasMaxLength(50).IsRequired();
             builder.HasData(
                 new QuestionType { QuestionTypeId = 1, QuestionTypeName = "Free Text" },
                 new QuestionType { QuestionTypeId = 2, QuestionTypeName = "Multiple Choice" }
