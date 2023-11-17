@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModelConfigurations\" />
+    <Compile Remove="ModelConfigurations\**" />
+    <EmbeddedResource Remove="ModelConfigurations\**" />
+    <None Remove="ModelConfigurations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\Dto\" />
   </ItemGroup>
 
