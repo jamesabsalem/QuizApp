@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\QuizApp.Shared\QuizApp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ModelConfigurations\" />
   </ItemGroup>
 
 </Project>
