@@ -11,8 +11,4 @@
     <ProjectReference Include="..\QuizApp.Shared\QuizApp.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ModelConfigurations\" />
-  </ItemGroup>
-
 </Project>
