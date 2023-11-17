@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ModelConfigurations\" />
+    <Folder Include="Models\Dto\" />
+  </ItemGroup>
+
 </Project>
