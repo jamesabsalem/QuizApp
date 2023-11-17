@@ -9,6 +9,7 @@ namespace QuizApp.Api.ModelConfigurations
         public void Configure(EntityTypeBuilder<Quiz> builder)
         {
             builder.ToTable(name: "Quiz", schema: "Quiz");
+
             builder.HasKey(q => q.QuizId);
 
             builder.Property(q => q.Title).HasMaxLength(200).IsRequired();

@@ -9,7 +9,9 @@ namespace QuizApp.Api.ModelConfigurations
         public void Configure(EntityTypeBuilder<Question> builder)
         {
             builder.ToTable(name: "Question", schema: "Quiz");
+
             builder.HasKey(q => q.QuestionId);
+
             builder.Property(q => q.QuizId).IsRequired();
             builder.HasOne(q => q.Quiz)
                 .WithMany()
