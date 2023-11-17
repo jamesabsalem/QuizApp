@@ -1,9 +1,17 @@
 ﻿@page "/"
 <PageTitle>Home</PageTitle>
 
-<button type="button" @onclick="onClick" class="btn btn-outline-primary">Primary</button>
+<div class="row">
+    @foreach (var quiz in QuizList)
+    {
+        <div class="card border-light m-0 mb-3" style="max-width: 20rem;">
+            <div class="card-header">@quiz.QuizCode</div>
+            <div class="card-body">
+                <h4 class="card-title">@quiz.QuizTitle</h4>
+            </div>
+        </div>
+    }
+</div>
 
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
