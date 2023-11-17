@@ -1,16 +1,26 @@
 ﻿@page "/"
 <PageTitle>Home</PageTitle>
 
-<div class="row">
-    @foreach (var quiz in QuizList)
-    {
-        <div class="card border-light m-0 mb-3" style="max-width: 20rem;">
-            <div class="card-header">@quiz.QuizCode</div>
-            <div class="card-body">
-                <h4 class="card-title">@quiz.QuizTitle</h4>
+<div class="container">
+    <div class="row gap-1">
+        @foreach (var quiz in QuizList)
+        {
+            <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Secondary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
             </div>
-        </div>
-    }
+            @* <div class="card border-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">@quiz.QuizCode</div>
+                <div class="card-body">
+                    <h4 class="card-title">@quiz.QuizTitle</h4>
+                </div>
+            </div> *@
+        }
+    </div>
+
 </div>
 
 
