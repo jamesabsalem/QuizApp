@@ -8,7 +8,7 @@ namespace QuizApp.Api.ModelConfigurations
     {
         public void Configure(EntityTypeBuilder<Question> builder)
         {
-            builder.ToTable(name: "Question", schema: "Quiz");
+            builder.ToTable(name: "Question");
 
             builder.HasKey(q => q.QuestionId);
 
@@ -17,11 +17,13 @@ namespace QuizApp.Api.ModelConfigurations
                 .WithMany()
                 .HasForeignKey(u => u.QuizId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(q=>q.QuestionTypeId).IsRequired();
             builder.HasOne(q => q.QuestionType)
                .WithMany()
                .HasForeignKey(u => u.QuestionTypeId)
                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(q => q.QuestionText).HasMaxLength(100).IsRequired();
             builder.Property(q => q.TimeLemit).IsRequired();
             builder.Property(q => q.Point).IsRequired();

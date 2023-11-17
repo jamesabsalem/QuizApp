@@ -8,7 +8,7 @@ namespace QuizApp.Api.ModelConfigurations
     {
         public void Configure(EntityTypeBuilder<UserAnswer> builder)
         {
-            builder.ToTable(name: "UserAnswer", schema: "Quiz");
+            builder.ToTable(name: "UserAnswer");
 
             builder.HasKey(u => u.UserAnswerId);
         }

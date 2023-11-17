@@ -8,7 +8,8 @@ namespace QuizApp.Api.ModelConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable(name: "User", schema: "MasterSetup");
+            builder.ToTable(name: "User");
+
             builder.HasKey(u => u.UserId);
 
             builder.Property(u=> u.UserName).HasMaxLength(50).IsRequired();
