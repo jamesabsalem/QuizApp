@@ -2,16 +2,17 @@
 <PageTitle>Home</PageTitle>
 
 <div class="container">
-    <div class="row gap-1">
+    <div class="row">
         @foreach (var quiz in QuizList)
         {
-            <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Header</div>
-                <div class="card-body">
-                    <h4 class="card-title">Secondary card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+           <div class="d-grid col-lg-3 col-md-6">
+                <div class="card border-light mb-3" style="max-width: 20rem;">
+                    <div class="card-header">@quiz.QuizCode</div>
+                    <div class="card-body">
+                        <h4 class="card-title">@quiz.QuizTitle</h4>
+                    </div>
                 </div>
-            </div>
+           </div>
             @* <div class="card border-light mb-3" style="max-width: 20rem;">
                 <div class="card-header">@quiz.QuizCode</div>
                 <div class="card-body">
