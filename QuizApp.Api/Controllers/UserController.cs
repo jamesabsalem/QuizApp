@@ -5,7 +5,7 @@ using QuizApp.Shared.Models;
 
 namespace QuizApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -15,9 +15,9 @@ namespace QuizApp.Api.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<User>>> Create([FromBody]User user)
+        public async Task<ActionResult<ServiceResponse<User>>> Register([FromBody]User user)
         {
-            var response = await _userService.Create(user);
+            var response = await _userService.Register(user);
             return Ok(response);
         }
     }

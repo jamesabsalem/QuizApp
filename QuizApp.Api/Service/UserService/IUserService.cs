@@ -5,6 +5,6 @@ namespace QuizApp.Api.Service.UserService
 {
     public interface IUserService
     {
-        Task<ServiceResponse<User>> Create(User user);
+        Task<ServiceResponse<User>> Register(User user);
     }
 }
