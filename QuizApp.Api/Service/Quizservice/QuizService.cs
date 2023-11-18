@@ -20,6 +20,8 @@ namespace QuizApp.Api.Service.Quizservice
 
                 var quizzes = await _dbContext.Quizzes
                 .Include(q => q.User)
+                //.Include(q => q.Questions)
+                //.ThenInclude(q => q.QuestionType)
                 .OrderByDescending(q => q.CreateDate)
                 .ToListAsync();
 
