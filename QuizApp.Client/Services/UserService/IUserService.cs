@@ -1,10 +1,10 @@
 ﻿using QuizApp.Shared.Helper;
 using QuizApp.Shared.Models;
 
-namespace QuizApp.Api.Service.UserService
+namespace QuizApp.Client.Services.UserService
 {
     public interface IUserService
     {
-        public Task<ServiceResponse<User>> Register(User user);
+        Task<ServiceResponse<User>> Register(User user);
     }
 }
