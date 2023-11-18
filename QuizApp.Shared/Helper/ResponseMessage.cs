@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuizApp.Shared.Helper
+﻿namespace QuizApp.Shared.Helper
 {
     public static class ResponseMessage
     {

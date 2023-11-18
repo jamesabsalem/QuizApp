@@ -1,12 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Api.Data;
 using QuizApp.Api.Handler;
+using QuizApp.Api.Service.Quizservice;
 using QuizApp.Api.Service.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+// Add CORS service
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -16,12 +27,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// JWT Authentication
+// Add JWT Authentication
 builder.Services.AddCustomJwtAuthentication();
 builder.Services.AddSingleton<JwtTokenHandler>();
-//Service
+//Add Services
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<IQuizService, QuizService>();
 
 var app = builder.Build();
 
@@ -36,6 +47,14 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+// Use CORS middleware
+app.UseCors("AllowAllOrigins");
+
+// Configure the HTTP request pipeline.
+
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 
