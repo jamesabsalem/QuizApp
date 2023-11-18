@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using QuizApp.Api.Data;
 using QuizApp.Api.Handler;
 
@@ -22,9 +23,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 // JWT Authentication
 builder.Services.AddCustomJwtAuthentication();
 builder.Services.AddSingleton<JwtTokenHandler>();
+//Service
+builder.Services.AddScoped<IRegisteredServices, RegisteredServices>();
 var app = builder.Build();
 // Step 3: Use CORS middleware
 app.UseCors("AllowAllOrigins");
