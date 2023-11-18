@@ -99,8 +99,8 @@ namespace QuizApp.Api.Migrations
 
                     b.Property<string>("QuestionTypeName")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("QuestionTypeId");
 

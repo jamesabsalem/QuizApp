@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QuizApp.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class createTable : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,7 @@ namespace QuizApp.Api.Migrations
                 {
                     QuestionTypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionTypeName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                    QuestionTypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

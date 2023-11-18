@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuizApp.Api.ModelConfigurations;
 using QuizApp.Shared.Models;
-using System.Security.Cryptography.X509Certificates;
 
 namespace QuizApp.Api.Data
 {
@@ -20,14 +19,12 @@ namespace QuizApp.Api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new QuestionTypeConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new QuestionTypeConfig());
             modelBuilder.ApplyConfiguration(new QuizConfig());
             modelBuilder.ApplyConfiguration(new OptionConfig());
             modelBuilder.ApplyConfiguration(new QuestionConfig());
             modelBuilder.ApplyConfiguration(new UserAnswerConfig());
-
-
         }
     }
 }
