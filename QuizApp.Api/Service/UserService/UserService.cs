@@ -11,7 +11,7 @@ namespace QuizApp.Api.Service.UserService
         {
             _dbContext = dbContext;
         }
-        public async Task<ServiceResponse<User>> Create(User user)
+        public async Task<ServiceResponse<User>> Register(User user)
         {
             var responce = new ServiceResponse<User>();
             try
