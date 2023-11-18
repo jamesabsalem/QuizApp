@@ -8,6 +8,7 @@ namespace QuizApp.Client.Pages
     {
         [Inject] IJSRuntime _jsRuntime { get; set; }
         List<Quiz> QuizList;
+        private string _modalDisplay = "none";
         protected override void OnInitialized()
         {
             QuizList = new List<Quiz>()
@@ -28,6 +29,19 @@ namespace QuizApp.Client.Pages
         {
             await _jsRuntime.ToastrSuccess("test");
         }
+        public void OnClickStartQuiz()
+        {
+            ModelDisplay(true);
+        }
+        private void OnClickClose()
+        {
+            ModelDisplay(false);
+        }
+
+        private void ModelDisplay(bool isShow)
+        {
+            _modalDisplay = isShow ? "block" : "none";
+        }
     }
 
     public class Quiz
@@ -37,4 +51,5 @@ namespace QuizApp.Client.Pages
         public string QuizTitle { get; set; }
 
     }
+
 }
