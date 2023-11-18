@@ -9,5 +9,6 @@ namespace QuizApp.Shared.Models
         public User User { get; set; }
         public DateTime CreateDate { get; set; }
         public bool IsPublished { get; set; }
+        public List<Question> Questions { get; set; }
     }
 }

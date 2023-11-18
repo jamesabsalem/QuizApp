@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QuizApp.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Initialize : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,22 +39,6 @@ namespace QuizApp.Api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuestionType", x => x.QuestionTypeId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Quiz",
-                columns: table => new
-                {
-                    QuizId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Quiz", x => x.QuizId);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,6 +74,28 @@ namespace QuizApp.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Quiz",
+                columns: table => new
+                {
+                    QuizId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quiz", x => x.QuizId);
+                    table.ForeignKey(
+                        name: "FK_Quiz_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Question",
                 columns: table => new
                 {
@@ -99,7 +105,7 @@ namespace QuizApp.Api.Migrations
                     QuestionTypeId = table.Column<int>(type: "int", nullable: false),
                     QuestionText = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TimeLemit = table.Column<int>(type: "int", nullable: false),
+                    TimeLimit = table.Column<int>(type: "int", nullable: true),
                     Point = table.Column<int>(type: "int", nullable: false),
                     CreateBy = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -144,6 +150,11 @@ namespace QuizApp.Api.Migrations
                 name: "IX_Question_QuizId",
                 table: "Question",
                 column: "QuizId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quiz_UserId",
+                table: "Quiz",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -156,9 +167,6 @@ namespace QuizApp.Api.Migrations
                 name: "Question");
 
             migrationBuilder.DropTable(
-                name: "User");
-
-            migrationBuilder.DropTable(
                 name: "UserAnswer");
 
             migrationBuilder.DropTable(
@@ -166,6 +174,9 @@ namespace QuizApp.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Quiz");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

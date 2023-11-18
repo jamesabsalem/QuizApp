@@ -15,9 +15,9 @@ namespace QuizApp.Api.Controllers
             _quizService = quizService;
         }
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<Quiz>>> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
+        public async Task<ActionResult<ServiceResponse<Quiz>>> GetAll()
         {
-            var response = await _quizService.GetAll(pageNumber, pageSize);
+            var response = await _quizService.GetAll();
             return Ok(response);
         }
     }

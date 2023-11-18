@@ -12,22 +12,19 @@ namespace QuizApp.Api.Service.Quizservice
         {
             _dbContext = dbContext;
         }
-        public async Task<ServiceResponse<Pagination<Quiz>>> GetAll(int pageNumber, int pageSize)
+        public async Task<ServiceResponse<IEnumerable<Quiz>>> GetAll()
         {
-            var response = new ServiceResponse<Pagination<Quiz>>();
+            var response = new ServiceResponse<IEnumerable<Quiz>>();
             try
             {
-                var totalCount = await _dbContext.Quizzes.CountAsync();
-                var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
 
-                var countries = await _dbContext.Quizzes
-                    .Include(q => q.User)
-                    .OrderByDescending(q => q.CreateDate)
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
+                var quizzes = await _dbContext.Quizzes
+                .Include(q => q.User)
+                .OrderByDescending(q => q.CreateDate)
+                .ToListAsync();
 
-                if (countries == null || !countries.Any())
+
+                if (quizzes == null || !quizzes.Any())
                 {
                     response.IsSuccess = false;
                     response.Message = ResponseMessage.NotFound;
@@ -35,14 +32,7 @@ namespace QuizApp.Api.Service.Quizservice
                 else
                 {
                     response.Message = ResponseMessage.DataLoaded;
-                    response.Data = new Pagination<Quiz>
-                    {
-                        Items = countries,
-                        PageNumber = pageNumber,
-                        PageSize = pageSize,
-                        TotalItems = totalCount,
-                        TotalPages = totalPages
-                    };
+                    response.Data = quizzes;
                 }
             }
             catch (Exception ex)

@@ -5,6 +5,6 @@ namespace QuizApp.Api.Service.Quizservice
 {
     public interface IQuizService
     {
-        public Task<ServiceResponse<Pagination<Quiz>>> GetAll(int pageNumber, int pageSize);
+        public Task<ServiceResponse<IEnumerable<Quiz>>> GetAll();
     }
 }

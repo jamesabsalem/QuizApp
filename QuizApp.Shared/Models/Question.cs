@@ -10,7 +10,7 @@ namespace QuizApp.Shared.Models
         public QuestionType QuestionType { get; set; }
         public string QuestionText { get; set; }
         public string Url { get; set; }
-        public int TimeLemit { get; set; }
+        public int? TimeLimit { get; set; }
         public int Point { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreateDate { get; set; }
