@@ -12,6 +12,13 @@ namespace QuizApp.Api.ModelConfigurations
 
             builder.HasKey(q => q.QuizId);
 
+            builder.Property(q => q.UserId).IsRequired();
+            builder.HasOne(q => q.User)
+               .WithMany()
+               .HasForeignKey(u => u.UserId)
+               .OnDelete(DeleteBehavior.Restrict)
+               .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(q => q.Title).HasMaxLength(200).IsRequired();
             builder.Property(q => q.CreateDate).IsRequired();
         }
