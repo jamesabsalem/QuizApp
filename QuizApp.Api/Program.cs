@@ -3,6 +3,7 @@ using QuizApp.Api.Data;
 using QuizApp.Api.Handler;
 using QuizApp.Api.Service.Quizservice;
 using QuizApp.Api.Service.UserService;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

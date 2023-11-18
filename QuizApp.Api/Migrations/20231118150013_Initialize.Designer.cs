@@ -12,8 +12,8 @@ using QuizApp.Api.Data;
 namespace QuizApp.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231117172842_Initial")]
-    partial class Initial
+    [Migration("20231118150013_Initialize")]
+    partial class Initialize
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,7 +77,7 @@ namespace QuizApp.Api.Migrations
                     b.Property<int>("QuizId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TimeLemit")
+                    b.Property<int?>("TimeLimit")
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
@@ -145,6 +145,8 @@ namespace QuizApp.Api.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("QuizId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Quiz", (string)null);
                 });
@@ -223,7 +225,7 @@ namespace QuizApp.Api.Migrations
                         .IsRequired();
 
                     b.HasOne("QuizApp.Shared.Models.Quiz", "Quiz")
-                        .WithMany()
+                        .WithMany("Questions")
                         .HasForeignKey("QuizId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -231,6 +233,22 @@ namespace QuizApp.Api.Migrations
                     b.Navigation("QuestionType");
 
                     b.Navigation("Quiz");
+                });
+
+            modelBuilder.Entity("QuizApp.Shared.Models.Quiz", b =>
+                {
+                    b.HasOne("QuizApp.Shared.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("QuizApp.Shared.Models.Quiz", b =>
+                {
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

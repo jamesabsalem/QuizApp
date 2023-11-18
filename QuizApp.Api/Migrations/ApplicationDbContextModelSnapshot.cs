@@ -74,7 +74,7 @@ namespace QuizApp.Api.Migrations
                     b.Property<int>("QuizId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TimeLemit")
+                    b.Property<int?>("TimeLimit")
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
@@ -222,7 +222,7 @@ namespace QuizApp.Api.Migrations
                         .IsRequired();
 
                     b.HasOne("QuizApp.Shared.Models.Quiz", "Quiz")
-                        .WithMany()
+                        .WithMany("Questions")
                         .HasForeignKey("QuizId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -241,6 +241,11 @@ namespace QuizApp.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("QuizApp.Shared.Models.Quiz", b =>
+                {
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }
