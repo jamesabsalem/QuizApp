@@ -8,12 +8,16 @@ namespace QuizApp.Client.Pages
 {
     public partial class SignUp
     {
-        [Inject] IJSRuntime _jsRuntime { get; set; }
         private User user = new User();
-        [Inject]public IUserService UserService { get; set; }
+        [Inject] IJSRuntime _jsRuntime { get; set; }
+        [Inject] NavigationManager NavigationManager { get; set; }
+        [Inject] public IUserService UserService { get; set; }
         private async Task UserRegistration()
         {
-            await _jsRuntime.ToastrSuccess("test");
+            //var result = await UserService.Register(user);
+            await _jsRuntime.ToastrSuccess("User registered successfully!");
+            NavigationManager.NavigateTo("/SignIn");
+            user = new User();
         }
 
     }
