@@ -1,24 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using QuizApp.Api.Data;
 using QuizApp.Api.Handler;
 using QuizApp.Api.Service.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
-// Step 1: Add CORS service
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyHeader()
-                   .AllowAnyMethod();
-        });
-});
+
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -30,16 +21,32 @@ builder.Services.AddCustomJwtAuthentication();
 builder.Services.AddSingleton<JwtTokenHandler>();
 //Service
 builder.Services.AddScoped<IUserService, UserService>();
+
+
 var app = builder.Build();
-// Step 3: Use CORS middleware
-app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
 
-app.UseAuthorization();
-app.UseAuthentication();
+app.UseHttpsRedirection();
 
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+
+app.MapRazorPages();
 app.MapControllers();
-
+app.MapFallbackToFile("index.html");
 
 app.Run();
