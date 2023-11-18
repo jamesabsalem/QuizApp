@@ -2,12 +2,12 @@
 using QuizApp.Shared.Helper;
 using QuizApp.Shared.Models;
 
-namespace QuizApp.Api.Service.RegistrationService
+namespace QuizApp.Api.Service.UserService
 {
-    public class RegistrationService : IRegistrationService
+    public class UserService : IUserService
     {
         private readonly ApplicationDbContext _dbContext;
-        public RegistrationService(ApplicationDbContext dbContext)
+        public UserService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }

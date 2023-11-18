@@ -1,9 +1,9 @@
 ﻿using QuizApp.Shared.Helper;
 using QuizApp.Shared.Models;
 
-namespace QuizApp.Api.Service.RegistrationService
+namespace QuizApp.Api.Service.UserService
 {
-    public interface IRegistrationService
+    public interface IUserService
     {
         Task<ServiceResponse<User>> Create(User user);
     }
