@@ -8,7 +8,7 @@ namespace QuizApp.Shared.Models.Dto
 {
     public class JwtDTO
     {
-        public string Toket {  get; set; }
+        public string Token {  get; set; }
         public int ExpiresIn {  get; set; }
 
     }
