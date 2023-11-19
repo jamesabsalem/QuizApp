@@ -34,11 +34,8 @@ namespace QuizApp.Api.Service.AuthService
                 var loginResponse = new LoginResponseDTO
                 {
                     JwtToken = jwt,
-                    User=new UserDTO
-                    {
-                        UserId=user.UserId,
-                        UserName=user.UserName
-                    }
+                    UserId = user.UserId,
+                    UserName = user.UserName
                 };
                 response.Data = loginResponse;
                 response.Message = ResponseMessage.LoginSuccess;
