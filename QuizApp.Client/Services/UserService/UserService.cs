@@ -14,7 +14,8 @@ namespace QuizApp.Client.Services.UserService
 
         public async Task<ServiceResponse<User>> Register(User user)
         {
-            return await _httpClient.GetFromJsonAsync<ServiceResponse<User>>($"api/User/Register");
+            var response = await _httpClient.PostAsJsonAsync($"api/User/Register", user);
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<User>>(); ;
         }
     }
 }
