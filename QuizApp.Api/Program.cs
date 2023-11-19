@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using QuizApp.Api.Data;
 using QuizApp.Api.Handler;
 using QuizApp.Api.Service.AuthService;
+using QuizApp.Api.Service.QuestionService;
 using QuizApp.Api.Service.Quizservice;
 using QuizApp.Api.Service.UserService;
 using System.Text.Json.Serialization;
@@ -36,6 +37,7 @@ builder.Services.AddSingleton<JwtTokenHandler>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IQuizService, QuizService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
 var app = builder.Build();
 
