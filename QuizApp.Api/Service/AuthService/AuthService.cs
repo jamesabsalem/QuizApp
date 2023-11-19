@@ -22,6 +22,7 @@ namespace QuizApp.Api.Service.AuthService
 
             var user = await _dbContext.Users
                 .FirstOrDefaultAsync(u => u.UserName == loginRequest.UserName && u.Password == loginRequest.Password);
+            
             if (user == null)
             {
                 response.IsSuccess = false;
@@ -32,12 +33,9 @@ namespace QuizApp.Api.Service.AuthService
                 var jwt = _jwtTokenHandler.GenerateJwtToken(loginRequest.UserName);
                 var loginResponse = new LoginResponseDTO
                 {
-                    //JwtToken = jwt,
-                    User=new UserDTO
-                    {
-                        UserId=user.UserId,
-                        UserName=user.UserName
-                    }
+                    JwtToken = jwt,
+                    UserId = user.UserId,
+                    UserName = user.UserName
                 };
                 response.Data = loginResponse;
                 response.Message = ResponseMessage.LoginSuccess;
