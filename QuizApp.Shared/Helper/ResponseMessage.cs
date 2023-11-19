@@ -4,7 +4,7 @@
     {
         public static string InvalidUser = "Invalid username or password.";
 
-        public static string LoginSuccess = "Welcome to ERP system.";
+        public static string LoginSuccess = "Welcome to Quiz App.";
 
         public static string NotFound = "No data found.";
 

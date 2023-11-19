@@ -8,7 +8,7 @@ namespace QuizApp.Shared.Models.Dto
 {
     public class LoginResponseDTO
     {
-        public JwtDTO JwtToken {  get; set; }
+        public string JwtToken {  get; set; }
         public UserDTO User {  get; set; }
 
     }
