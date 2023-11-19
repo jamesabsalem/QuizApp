@@ -19,10 +19,22 @@
                 <button type="button" class="btn-close" @onclick="CloseModal"></button>
             </div>
             <div class="modal-body">
-                <!-- Add your quiz content here -->
+                @if (Question != null)
+                {
+                    <h2>@Question.QuestionText</h2>
+                    <form>
+                        @foreach(var option in Question.Options)
+                        {
+                            <div class="mb-3 custom-control custom-radio">
+                                <input type="radio" id="@option.QuestionId" name="options" class="custom-control-input">
+                                <label class="custom-control-label" for="@option.QuestionId">@option.OptionText</label>
+                            </div>
+                        }
+                    </form>
+                }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Next</button>
+                <button type="button" class="btn btn-primary" @onclick="OnClickNext" >Next</button>
             </div>
         </div>
     </div>

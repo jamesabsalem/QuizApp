@@ -44,5 +44,37 @@ namespace QuizApp.Api.Service.Quizservice
             }
             return response;
         }
+
+        public async Task<ServiceResponse<IEnumerable<Question>>> GetQuestions(int quizId)
+        {
+            var response = new ServiceResponse<IEnumerable<Question>>();
+            try
+            {
+
+                var questions = await _dbContext.Questions
+                    .Include(q => q.QuestionType)
+                    .Include(q => q.Options)
+                    .Where(q => q.QuizId == quizId)
+                    .OrderBy(q => q.QuestionId)
+                    .ToListAsync();
+
+                if (questions == null || !questions.Any())
+                {
+                    response.IsSuccess = false;
+                    response.Message = ResponseMessage.NotFound;
+                }
+                else
+                {
+                    response.Message = ResponseMessage.DataLoaded;
+                    response.Data = questions;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
     }
 }

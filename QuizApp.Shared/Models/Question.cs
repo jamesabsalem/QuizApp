@@ -14,5 +14,6 @@ namespace QuizApp.Shared.Models
         public int Point { get; set; }
         public int CreateBy { get; set; }
         public DateTime CreateDate { get; set; }
+        public List<Option> Options { get; set; }
     }
 }

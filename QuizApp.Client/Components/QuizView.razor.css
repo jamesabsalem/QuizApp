@@ -1,0 +1,5 @@
+﻿/* Custom styling for radio buttons */
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #007bff; /* Change this color as needed */
+    border-color: #007bff;
+}
