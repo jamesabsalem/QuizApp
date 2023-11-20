@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using QuizApp.Client.Services;
+using QuizApp.Client.Services.HomeService;
 using QuizApp.Shared.Models;
 
 namespace QuizApp.Client.Components
@@ -16,8 +16,7 @@ namespace QuizApp.Client.Components
         private int QuestionIndex = 0;
         public void OnClickStartQuiz()
         {
-            IsModalShow = true;
-            StateHasChanged();
+           IsModalShow = true;
         }
         private void CloseModal()
         {

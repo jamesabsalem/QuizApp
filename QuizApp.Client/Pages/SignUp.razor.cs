@@ -12,16 +12,14 @@ namespace QuizApp.Client.Pages
         [Inject] IJSRuntime _jsRuntime { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
         [Inject] public IUserService UserService { get; set; }
-        private async Task UserSignUp()
+        private async Task OnClickUserSignUp()
         {
-            var result = await UserService.Register(user);
-            if(result.IsSuccess)
+            var result = await UserService.SignUp(user);
+            if (result.IsSuccess)
             {
                 await _jsRuntime.ToastrSuccess(result.Message);
-                var user = result.Data;
                 NavigationManager.NavigateTo("/SignIn");
             }
-          
         }
 
     }

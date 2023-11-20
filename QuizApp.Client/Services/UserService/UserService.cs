@@ -1,5 +1,6 @@
 ﻿using QuizApp.Shared.Helper;
 using QuizApp.Shared.Models;
+using QuizApp.Shared.Models.Dto;
 using System.Net.Http.Json;
 
 namespace QuizApp.Client.Services.UserService
@@ -12,10 +13,15 @@ namespace QuizApp.Client.Services.UserService
             _httpClient = httpClient;
         }
 
-        public async Task<ServiceResponse<User>> Register(User user)
+        public async Task<ServiceResponse<User>> SignUp(User user)
         {
-            var response = await _httpClient.PostAsJsonAsync($"api/User/Register", user);
+            var response = await _httpClient.PostAsJsonAsync($"api/User/SignUp", user);
             return await response.Content.ReadFromJsonAsync<ServiceResponse<User>>(); ;
+        }
+        public async Task<ServiceResponse<UserResponseDTO>> SignIn(UserRequestDTO user)
+        {
+            var response = await _httpClient.PostAsJsonAsync($"api/User/SignIn", user);
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<UserResponseDTO>>(); ;
         }
     }
 }

@@ -1,22 +1,20 @@
 ﻿using ERP.Web.Helper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using QuizApp.Client.Models;
-using QuizApp.Client.Services.AuthService;
+using QuizApp.Client.Services.UserService;
+using QuizApp.Shared.Models.Dto;
 
 namespace QuizApp.Client.Pages
 {
     public partial class SignIn
     {
-        // service
-        [Inject] IAuthService AuthService { get; set; }
         [Inject] IJSRuntime _JsRuntime { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
-        // variable
-        private LoginRequest loginRequest = new LoginRequest();
-        private async Task OnClickLogin()
+        [Inject] UserService UserService { get; set; }
+        private UserRequestDTO userRequest = new UserRequestDTO();
+        private async Task OnClickSignIn()
         {
-            var result = await AuthService.Login(loginRequest);
+            var result = await UserService.SignIn(userRequest);
             if (result.IsSuccess)
             {
                 NavigationManager.NavigateTo("/dashboard");

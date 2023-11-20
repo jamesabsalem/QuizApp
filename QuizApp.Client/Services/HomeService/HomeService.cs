@@ -2,7 +2,7 @@
 using QuizApp.Shared.Models;
 using System.Net.Http.Json;
 
-namespace QuizApp.Client.Services
+namespace QuizApp.Client.Services.HomeService
 {
     public class HomeService : IHomeService
     {
@@ -14,7 +14,7 @@ namespace QuizApp.Client.Services
         }
         public async Task<ServiceResponse<IEnumerable<Quiz>>> GetAll()
         {
-            return await _httpClient.GetFromJsonAsync<ServiceResponse<IEnumerable<Quiz>>> ($"api/Quiz/GetAll");
+            return await _httpClient.GetFromJsonAsync<ServiceResponse<IEnumerable<Quiz>>>($"api/Quiz/GetAll");
         }
 
         public async Task<ServiceResponse<IEnumerable<Question>>> GetQuestion(int quizId)

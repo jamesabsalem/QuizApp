@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuizApp.Api.Service.UserService;
 using QuizApp.Shared.Helper;
 using QuizApp.Shared.Models;
+using QuizApp.Shared.Models.Dto;
 
 namespace QuizApp.Api.Controllers
 {
@@ -15,9 +17,15 @@ namespace QuizApp.Api.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<User>>> Register([FromBody]User user)
+        public async Task<ActionResult<ServiceResponse<User>>> SignUp([FromBody]User user)
         {
-            var response = await _userService.Register(user);
+            var response = await _userService.SignUp(user);
+            return Ok(response);
+        }
+        [AllowAnonymous, HttpPost]
+        public async Task<ActionResult<ServiceResponse<UserResponseDTO>>> Login([FromBody] UserRequestDTO loginRequest)
+        {
+            var response = await _userService.SignIn(loginRequest);
             return Ok(response);
         }
     }

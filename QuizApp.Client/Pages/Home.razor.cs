@@ -1,7 +1,7 @@
 ﻿using ERP.Web.Helper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using QuizApp.Client.Services;
+using QuizApp.Client.Services.HomeService;
 using QuizApp.Shared.Models;
 
 namespace QuizApp.Client.Pages

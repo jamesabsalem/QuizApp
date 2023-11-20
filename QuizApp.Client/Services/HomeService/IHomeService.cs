@@ -1,7 +1,7 @@
 ﻿using QuizApp.Shared.Helper;
 using QuizApp.Shared.Models;
 
-namespace QuizApp.Client.Services
+namespace QuizApp.Client.Services.HomeService
 {
     public interface IHomeService
     {
