@@ -1,4 +1,12 @@
 ﻿@page "/CreateQuiz"
 
 
-<h1>Create Quiz</h1>
+<h2>Create Your Quiz</h2>
+<form class="row g-3">
+    <div class="col-auto">
+        <input type="text" class="form-control" placeholder="Add Quiz Title">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3" @onclick="OnClickAddQuiz">Add Quiz Title</button>
+    </div>
+</form>
