@@ -16,7 +16,8 @@ namespace QuizApp.Client.Components
         private int QuestionIndex = 0;
         public void OnClickStartQuiz()
         {
-           IsModalShow = true;
+            IsModalShow = true;
+            StateHasChanged();
         }
         private void CloseModal()
         {
