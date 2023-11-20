@@ -17,10 +17,13 @@ namespace QuizApp.Client.Components
         public void OnClickStartQuiz()
         {
            IsModalShow = true;
+           
         }
         private void CloseModal()
         {
             IsModalShow = false;
+            QuestionIndex = 0;
+            StateHasChanged();
         }
         protected async override Task OnInitializedAsync()
         {
@@ -33,9 +36,9 @@ namespace QuizApp.Client.Components
         }
         protected void OnClickNext()
         {
-            QuestionIndex++;
             if (QuestionIndex < Questions.Count)
             {
+                QuestionIndex++;
                 Question = Questions[QuestionIndex];
             }
         }
