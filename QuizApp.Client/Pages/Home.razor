@@ -1,7 +1,7 @@
 ﻿@page "/"
 <PageTitle>Home</PageTitle>
 
-<AuthorizeView>
+@* <AuthorizeView>
     <Authorized>
         <p>User Id - @user.UserId</p>
         <p>User Id - @user.UserName</p>
@@ -9,7 +9,7 @@
     <NotAuthorized>
         <p>Please log in to view your profile.</p>
     </NotAuthorized>
-</AuthorizeView>
+</AuthorizeView> *@
 @if (QuizList != null)
 {
     <div class="container">
