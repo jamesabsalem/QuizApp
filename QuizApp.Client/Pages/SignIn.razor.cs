@@ -12,7 +12,7 @@ namespace QuizApp.Client.Pages
     {
         [Inject] IJSRuntime _JsRuntime { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
-        [Inject] UserService UserService { get; set; }
+        [Inject] IUserService UserService { get; set; }
         [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
         private UserRequestDTO userRequest = new UserRequestDTO();
         private async Task OnClickSignIn()
@@ -22,7 +22,7 @@ namespace QuizApp.Client.Pages
             {
                 var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthenticationStateProvider;
                 await customAuthStateProvider.UpdateAuthenticationState(result.Data);
-                NavigationManager.NavigateTo("/dashboard");
+                NavigationManager.NavigateTo("/");
                 await _JsRuntime.ToastrSuccess(result.Message);
             }
             else

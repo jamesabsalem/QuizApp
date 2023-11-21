@@ -23,7 +23,7 @@ namespace QuizApp.Api.Controllers
             return Ok(response);
         }
         [AllowAnonymous, HttpPost]
-        public async Task<ActionResult<ServiceResponse<UserResponseDTO>>> Login([FromBody] UserRequestDTO loginRequest)
+        public async Task<ActionResult<ServiceResponse<UserResponseDTO>>> SignIn([FromBody] UserRequestDTO loginRequest)
         {
             var response = await _userService.SignIn(loginRequest);
             return Ok(response);
