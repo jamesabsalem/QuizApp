@@ -22,5 +22,11 @@ namespace QuizApp.Client.Services.HomeService
             var response = await _httpClient.GetAsync($"api/Quiz/GetQuestions?quizId={quizId}");
             return await response.Content.ReadFromJsonAsync<ServiceResponse<IEnumerable<Question>>>();
         }
+
+        public async Task<ServiceResponse<IEnumerable<Quiz>>> GetQuizzesByUser(int userId)
+        {
+            var response = await _httpClient.GetAsync($"api/Quiz/GetQuizzesByUser?userId={userId}");
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<IEnumerable<Quiz>>>();
+        }
     }
 }

@@ -26,5 +26,11 @@ namespace QuizApp.Api.Controllers
             var response = await _quizService.GetQuestions(quizId);
             return Ok(response);
         }
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<Quiz>>> GetQuizzesByUser(int userId)
+        {
+            var response = await _quizService.GetQuizzesByUser(userId);
+            return Ok(response);
+        }
     }
 }

@@ -9,3 +9,34 @@
         <button type="submit" class="btn btn-primary mb-3" @onclick="OnClickAddQuiz">Add Quiz Title</button>
     </div>
 </form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Created Date</th>
+            <th scope="col">Is Publish</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quiz in quizzes)
+        {
+            <tr>
+                <th scope="row">@quiz.Title</th>
+                <th scope="row">@quiz.User.UserName</th>
+                <th scope="row">@quiz.CreateDate.ToString("dd-MMM-yyyy")</th>
+                <th scope="row">
+                    @if (quiz.IsPublished)
+                    {
+                        <span class="badge bg-success">Published</span>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-danger">Pending</button>
+                    }
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

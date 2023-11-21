@@ -20,8 +20,7 @@ namespace QuizApp.Api.Service.Quizservice
 
                 var quizzes = await _dbContext.Quizzes
                 .Include(q => q.User)
-                //.Include(q => q.Questions)
-                //.ThenInclude(q => q.QuestionType)
+                .Where(q => q.IsPublished)
                 .OrderByDescending(q => q.CreateDate)
                 .ToListAsync();
 
@@ -67,6 +66,38 @@ namespace QuizApp.Api.Service.Quizservice
                 {
                     response.Message = ResponseMessage.DataLoaded;
                     response.Data = questions;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        public async Task<ServiceResponse<IEnumerable<Quiz>>> GetQuizzesByUser(int userId)
+        {
+            var response = new ServiceResponse<IEnumerable<Quiz>>();
+            try
+            {
+
+                var quizzes = await _dbContext.Quizzes
+                .Include(q => q.User)
+                .OrderByDescending(q => q.CreateDate)
+                .Where(q => q.UserId == userId)
+                .ToListAsync();
+
+
+                if (quizzes == null || !quizzes.Any())
+                {
+                    response.IsSuccess = false;
+                    response.Message = ResponseMessage.NotFound;
+                }
+                else
+                {
+                    response.Message = ResponseMessage.DataLoaded;
+                    response.Data = quizzes;
                 }
             }
             catch (Exception ex)
