@@ -10,7 +10,6 @@ namespace QuizApp.Client.Helper
     {
         private readonly ISessionStorageService _sessionStorage;
         private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
-
         public CustomAuthenticationStateProvider(ISessionStorageService sessionStorage)
         {
             _sessionStorage = sessionStorage;
@@ -55,8 +54,21 @@ namespace QuizApp.Client.Helper
             }
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
         }
+        public async Task<UserResponseDTO> GetAuthenticatedUser()
+        {
+            UserResponseDTO userResponse;
+            try
+            {
+                userResponse = await _sessionStorage.GetItemAsync<UserResponseDTO>("UserSession");
+                return userResponse;
+            }
+            catch
+            {
+               return new UserResponseDTO();
+            }
+        }
 
-        public async Task MarkUserAsLoggedOut()
+        public async Task MarkUserAsSignOut()
         {
             await _sessionStorage.RemoveItemAsync("UserSession");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(_anonymous)));
