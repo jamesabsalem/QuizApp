@@ -22,7 +22,7 @@ namespace QuizApp.Client.Pages
             {
                 var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthenticationStateProvider;
                 await customAuthStateProvider.UpdateAuthenticationState(result.Data);
-                NavigationManager.NavigateTo("/");
+                NavigationManager.NavigateTo("/",forceLoad:true);
                 await _JsRuntime.ToastrSuccess(result.Message);
             }
             else

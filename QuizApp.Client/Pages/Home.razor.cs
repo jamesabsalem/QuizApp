@@ -5,6 +5,7 @@ using Microsoft.JSInterop;
 using QuizApp.Client.Helper;
 using QuizApp.Client.Services.HomeService;
 using QuizApp.Shared.Models;
+using QuizApp.Shared.Models.Dto;
 
 namespace QuizApp.Client.Pages
 {
@@ -13,8 +14,8 @@ namespace QuizApp.Client.Pages
         [Inject] IJSRuntime _jsRuntime { get; set; }
         List<Quiz> QuizList;
         [Inject] public IHomeService HomeService { get; set; }
-        [Inject] public AuthenticationStateProvider authenticationStateProvider { get; set; }
-        private string username;
+        [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        private UserResponseDTO user = new();
         protected override async Task OnInitializedAsync()
         {
             var result = await HomeService.GetAll();
@@ -22,13 +23,8 @@ namespace QuizApp.Client.Pages
             {
                 QuizList = result.Data.ToList();
             }
-            var authState = await authenticationStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-
-            if (user.Identity.IsAuthenticated)
-            {
-                username = user.Identity.Name;
-            }
+            var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthenticationStateProvider;
+            user = await customAuthStateProvider.GetAuthenticatedUser();
         }
         
         private async Task onClick()
