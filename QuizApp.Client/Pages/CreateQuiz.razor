@@ -3,7 +3,7 @@
 <h2>Create Your Quiz</h2>
 <form class="row g-3">
     <div class="col-auto">
-        <input type="text" class="form-control" placeholder="Add Quiz Title">
+        <input type="text" @bind="@quiz.Title" class="form-control" placeholder="Add Quiz Title">
     </div>
     <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3" @onclick="OnClickAddQuiz">Add Quiz Title</button>

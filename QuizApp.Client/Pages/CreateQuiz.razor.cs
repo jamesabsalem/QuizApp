@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using ERP.Web.Helper;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using QuizApp.Client.Helper;
 using QuizApp.Client.Services.HomeService;
 using QuizApp.Shared.Models;
@@ -9,15 +11,22 @@ namespace QuizApp.Client.Pages
 {
     public partial class CreateQuiz
     {
-        [Inject]
-        public NavigationManager navigationManager { get; set; }
+        [Inject]public NavigationManager navigationManager { get; set; }
         [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
         [Inject] public IHomeService HomeService { get; set; }
+        [Inject] IJSRuntime _jsRuntime { get; set; }
         private UserResponseDTO user = new();
+        private Quiz quiz = new();
         private List<Quiz> quizzes = new();
-        public void OnClickAddQuiz()
+        public async void OnClickAddQuiz()
         {
-            navigationManager.NavigateTo("/CreateQuestion");
+            var result = await HomeService.CreateQuiz(quiz);
+            if(result.IsSuccess)
+            {
+                await _jsRuntime.ToastrSuccess(result.Message);
+                navigationManager.NavigateTo("/CreateQuestion");
+            }
+            
         }
         protected async override Task OnInitializedAsync()
         {
