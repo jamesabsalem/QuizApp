@@ -4,6 +4,7 @@ namespace QuizApp.Shared.Models
     public class Quiz
     {
         public int QuizId { get; set; }
+        public string QuizCode { get; set; }
         public string Title { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }

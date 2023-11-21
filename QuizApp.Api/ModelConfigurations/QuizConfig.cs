@@ -12,11 +12,16 @@ namespace QuizApp.Api.ModelConfigurations
 
             builder.HasKey(q => q.QuizId);
 
+            builder.Property(q => q.QuizCode)
+            .HasComputedColumnSql("CONCAT('QZ-', CONVERT(NVARCHAR(20), [QuizId]))")
+            .IsRequired();
+
             builder.HasMany(q => q.Questions)
                 .WithOne(q => q.Quiz)
                 .HasForeignKey(q => q.QuizId);
 
             builder.Property(q => q.UserId).IsRequired();
+            builder.Property(q => q.IsPublished).HasDefaultValue(false);
             builder.HasOne(q => q.User)
                 .WithMany()
                 .HasForeignKey(u => u.UserId)

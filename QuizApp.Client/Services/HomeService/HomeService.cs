@@ -12,6 +12,8 @@ namespace QuizApp.Client.Services.HomeService
         {
             _httpClient = httpClient;
         }
+
+        
         public async Task<ServiceResponse<IEnumerable<Quiz>>> GetAll()
         {
             return await _httpClient.GetFromJsonAsync<ServiceResponse<IEnumerable<Quiz>>>($"api/Quiz/GetAll");
@@ -28,5 +30,11 @@ namespace QuizApp.Client.Services.HomeService
             var response = await _httpClient.GetAsync($"api/Quiz/GetQuizzesByUser?userId={userId}");
             return await response.Content.ReadFromJsonAsync<ServiceResponse<IEnumerable<Quiz>>>();
         }
+        public async Task<ServiceResponse<Quiz>> CreateQuiz(Quiz quiz)
+        {
+            var response = await _httpClient.PostAsJsonAsync($"api/Quiz/Create", quiz);
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<Quiz>>();
+        }
+
     }
 }

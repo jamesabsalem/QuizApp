@@ -12,6 +12,8 @@ namespace QuizApp.Api.Service.Quizservice
         {
             _dbContext = dbContext;
         }
+
+
         public async Task<ServiceResponse<IEnumerable<Quiz>>> GetAll()
         {
             var response = new ServiceResponse<IEnumerable<Quiz>>();
@@ -105,6 +107,27 @@ namespace QuizApp.Api.Service.Quizservice
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
+            return response;
+        }
+
+        public async Task<ServiceResponse<Quiz>> Create(Quiz quiz)
+        {
+            var response = new ServiceResponse<Quiz>();
+            try
+            {
+                quiz.CreateDate = DateTime.Now;
+                _dbContext.Quizzes.Add(quiz);
+                await _dbContext.SaveChangesAsync();
+
+                response.Message = ResponseMessage.SaveSuccess;
+                response.Data = quiz;
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
             return response;
         }
     }
