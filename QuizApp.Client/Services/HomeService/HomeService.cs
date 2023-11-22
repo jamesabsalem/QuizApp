@@ -41,5 +41,10 @@ namespace QuizApp.Client.Services.HomeService
             var response = await _httpClient.PutAsync($"api/Quiz/QuizPublished?quizId={quizId}",null);
             return await response.Content.ReadFromJsonAsync<ServiceResponse<Quiz>>();
         }
+        public async Task<ServiceResponse<List<Question>>> CreateQuestions(List<Question> questions)
+        {
+            var response = await _httpClient.PostAsJsonAsync($"api/Quiz/CreateQuestions", questions);
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<List<Question>>>();
+        }
     }
 }

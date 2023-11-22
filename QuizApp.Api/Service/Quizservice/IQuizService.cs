@@ -10,6 +10,6 @@ namespace QuizApp.Api.Service.Quizservice
         public Task<ServiceResponse<IEnumerable<Quiz>>> GetQuizzesByUser(int userId);
         public Task<ServiceResponse<Quiz>> QuizPublished(int quizId);
         public Task<ServiceResponse<Quiz>> CreateQuize(Quiz quiz);
-        Task<ServiceResponse<Question>> CreateQuestion(Question question);
+        Task<ServiceResponse<List<Question>>> CreateQuestions(List<Question> question);
     }
 }

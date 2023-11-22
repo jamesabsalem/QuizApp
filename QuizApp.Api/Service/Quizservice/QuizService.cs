@@ -155,16 +155,19 @@ namespace QuizApp.Api.Service.Quizservice
             }
             return response;
         }
-        public async Task<ServiceResponse<Question>> CreateQuestion(Question question)
+        public async Task<ServiceResponse<List<Question>>> CreateQuestions(List<Question> questions)
         {
-            var response = new ServiceResponse<Question>();
+            var response = new ServiceResponse<List<Question>>();
             try
             {
-                question.CreateDate = DateTime.Now;
-                _dbContext.Add(question);
+                foreach (var question in questions)
+                {
+                    question.CreateDate = DateTime.Now;
+                    _dbContext.Questions.Add(question);
+                }
                 await _dbContext.SaveChangesAsync();
                 response.Message = ResponseMessage.SaveSuccess;
-                response.Data = question;
+                response.Data = questions;
             }
             catch (Exception ex)
             {
