@@ -25,9 +25,8 @@ namespace QuizApp.Client.Pages
             if (result.IsSuccess)
             {
                 quizEntry.Title = string.Empty;
-                await BindTable();
                 await _jsRuntime.ToastrSuccess(result.Message);
-                //navigationManager.NavigateTo("/CreateQuestion");
+                navigationManager.NavigateTo("/CreateQuestion");
             }
         }
         protected async override Task OnInitializedAsync()
