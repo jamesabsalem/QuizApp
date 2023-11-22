@@ -55,5 +55,14 @@ namespace QuizApp.Client.Pages
                 await BindTable();
             }
         }
+        public async void OnClickAddQuestion(int quizId)
+        {
+            var result = await HomeService.QuizPublished(quizId);
+            if(result.IsSuccess)
+            {
+                Console.WriteLine(result.Data.QuizId);
+                navigationManager.NavigateTo("/CreateQuestion");
+            }
+        }
     }
 }

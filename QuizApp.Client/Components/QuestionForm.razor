@@ -1,10 +1,19 @@
 ﻿<form id="dynamicQuizForm">
     <div class="card border-secondary mb-5">
-        <div class="card-header">Question 1:</div>
         <div class="card-body">
-            <input type="text" class="form-control">
+            <div class="mb-3 row">
+                <div class="col-md-8">
+                    <input type="text" placeholder="Question" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="option">
+                        <option value="Text">Text</option>
+                        <option value="MultipleChoice">Multiple Choice</option>
+                    </select>
+                </div>
+            </div>
             <div class="mb-3">
-                <label class="form-label bold">Options:</label>
+                <label class="form-label font-weight-bold">Options:</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -39,15 +48,20 @@
                 </div>
             </div>
         </div>
-       @*  <div class="card-footer">
-            <div class="mb-3">
+        <div class="card-footer">
+            <div class="mb-3 row">
+                <div class="col-md-6">
                 <label class="form-label">Upload Image:</label>
                 <input type="file" class="form-control" id="image${questionCount}" name="image${questionCount}" accept="image/*">
             </div>
-            <div class="mb-3">
+                <div class="col-md-6">
                 <label class="form-label">Upload Video:</label>
                 <input type="file" class="form-control" id="video${questionCount}" name="video${questionCount}" accept="video/*">
+                </div>
             </div>
-        </div> *@
+        </div>
     </div>
 </form>
+
+
+

@@ -11,12 +11,13 @@
 </form>
 
 <table class="table table-bordered table-striped">
-    <thead>
+    <thead class="table-dark">
         <tr>
             <th scope="col">Title</th>
             <th scope="col">Created By</th>
-            <th scope="col">Created Date</th>
-            <th scope="col">Is Publish</th>
+            <th scope="col" class="align-middle text-center">Created Date</th>
+            <th scope="col" class="align-middle text-center">Action</th>
+            <th scope="col" class="align-middle text-center">Is Publish</th>
         </tr>
     </thead>
     <tbody>
@@ -25,8 +26,9 @@
             <tr>
                 <th scope="row">@quiz.Title</th>
                 <th scope="row">@quiz.User.UserName</th>
-                <th scope="row">@quiz.CreateDate.ToString("dd-MMM-yyyy")</th>
-                <th scope="row">
+                <th scope="row" class="align-middle text-center" >@quiz.CreateDate.ToString("dd-MMM-yyyy")</th>
+                <th scope="row" class="align-middle text-center"><button type="button" class="btn btn-secondary" @onclick="() => OnClickAddQuestion(quiz.QuizId)">Add Question</button></th>
+                <th scope="row" class="align-middle text-center">
                     @if (quiz.IsPublished)
                     {
                         <span class="badge bg-success">Published</span>
