@@ -2,10 +2,10 @@
 
 <h2>Create Your Quiz</h2>
 <form class="row g-3">
-    <div class="col-auto">
+    <div class="col-md-8">
         <input type="text" @bind="@quizEntry.Title" class="form-control" placeholder="Add Quiz Title">
     </div>
-    <div class="col-auto">
+    <div class="col-md-4">
         <button type="button" class="btn btn-primary mb-3" @onclick="OnClickAddQuiz">Add Quiz Title</button>
     </div>
 </form>
@@ -27,7 +27,7 @@
                 <th scope="row">@quiz.Title</th>
                 <th scope="row">@quiz.User.UserName</th>
                 <th scope="row" class="align-middle text-center" >@quiz.CreateDate.ToString("dd-MMM-yyyy")</th>
-                <th scope="row" class="align-middle text-center"><button type="button" class="btn btn-secondary" @onclick="() => OnClickAddQuestion(quiz.QuizId)">Add Question</button></th>
+                <th scope="row" class="align-middle text-center"><button type="button" class="btn btn-dark" @onclick="() => OnClickAddQuestion(quiz.QuizId)">Add Question</button></th>
                 <th scope="row" class="align-middle text-center">
                     @if (quiz.IsPublished)
                     {

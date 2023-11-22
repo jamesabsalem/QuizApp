@@ -61,7 +61,7 @@ namespace QuizApp.Client.Pages
             if(result.IsSuccess)
             {
                 Console.WriteLine(result.Data.QuizId);
-                navigationManager.NavigateTo("/CreateQuestion");
+                navigationManager.NavigateTo($"/CreateQuestion/{quizId}");
             }
         }
     }
