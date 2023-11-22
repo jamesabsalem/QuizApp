@@ -38,5 +38,11 @@ namespace QuizApp.Api.Controllers
             var response = await _quizService.Create(quiz);
             return Ok(response);  
         }
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<Quiz>>> QuizPublished(int quizId)
+        {
+            var response = await _quizService.QuizPublished(quizId);
+            return Ok(response);
+        }
     }
 }

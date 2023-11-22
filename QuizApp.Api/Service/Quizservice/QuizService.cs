@@ -19,7 +19,6 @@ namespace QuizApp.Api.Service.Quizservice
             var response = new ServiceResponse<IEnumerable<Quiz>>();
             try
             {
-
                 var quizzes = await _dbContext.Quizzes
                 .Include(q => q.User)
                 .Where(q => q.IsPublished)
@@ -128,6 +127,32 @@ namespace QuizApp.Api.Service.Quizservice
                 response.Message = ex.Message;
             }
 
+            return response;
+        }
+        public async Task<ServiceResponse<Quiz>> QuizPublished(int quizId)
+        {
+            var response = new ServiceResponse<Quiz>();
+            try
+            {
+                var quiz = await _dbContext.Quizzes.FindAsync(quizId);
+                if(quiz == null)
+                {
+                    response.IsSuccess = false;
+                    response.Message = ResponseMessage.NotFound;
+                }
+
+                quiz.IsPublished = true;
+                _dbContext.Quizzes.Update(quiz);
+                _dbContext.SaveChanges();
+                response.Message = ResponseMessage.UpdateSuccess;
+                response.Data = quiz;
+            }
+            catch(Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.Data= null;
+            }
             return response;
         }
     }

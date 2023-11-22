@@ -30,6 +30,10 @@ namespace QuizApp.Client.Pages
         }
         protected async override Task OnInitializedAsync()
         {
+            await BindTable();
+        }
+        private async Task BindTable()
+        {
             var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthenticationStateProvider;
             user = await customAuthStateProvider.GetAuthenticatedUser();
             if (user != null)
@@ -39,6 +43,15 @@ namespace QuizApp.Client.Pages
                 {
                     quizzes = result.Data.ToList();
                 }
+            }
+        }
+        public async Task OnClickPublished(int quizId)
+        {
+            var result = await HomeService.QuizPublished(quizId);
+            if(result.IsSuccess)
+            {
+                await _jsRuntime.ToastrSuccess(result.Message);
+                await BindTable();
             }
         }
     }
