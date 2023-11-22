@@ -33,9 +33,9 @@ namespace QuizApp.Api.Controllers
             return Ok(response);
         }
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<Quiz>>> Create([FromBody] Quiz quiz)
+        public async Task<ActionResult<ServiceResponse<Quiz>>> CreateQuize([FromBody] Quiz quiz)
         {
-            var response = await _quizService.Create(quiz);
+            var response = await _quizService.CreateQuize(quiz);
             return Ok(response);  
         }
         [HttpPut]

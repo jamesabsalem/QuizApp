@@ -32,7 +32,7 @@ namespace QuizApp.Client.Services.HomeService
         }
         public async Task<ServiceResponse<Quiz>> CreateQuiz(Quiz quiz)
         {
-            var response = await _httpClient.PostAsJsonAsync($"api/Quiz/Create", quiz);
+            var response = await _httpClient.PostAsJsonAsync($"api/Quiz/CreateQuize", quiz);
             return await response.Content.ReadFromJsonAsync<ServiceResponse<Quiz>>();
         }
 

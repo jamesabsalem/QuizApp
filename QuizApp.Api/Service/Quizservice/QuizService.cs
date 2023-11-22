@@ -109,7 +109,7 @@ namespace QuizApp.Api.Service.Quizservice
             return response;
         }
 
-        public async Task<ServiceResponse<Quiz>> Create(Quiz quiz)
+        public async Task<ServiceResponse<Quiz>> CreateQuize(Quiz quiz)
         {
             var response = new ServiceResponse<Quiz>();
             try
@@ -152,6 +152,25 @@ namespace QuizApp.Api.Service.Quizservice
                 response.IsSuccess = false;
                 response.Message = ex.Message;
                 response.Data= null;
+            }
+            return response;
+        }
+        public async Task<ServiceResponse<Question>> CreateQuestion(Question question)
+        {
+            var response = new ServiceResponse<Question>();
+            try
+            {
+                question.CreateDate = DateTime.Now;
+                _dbContext.Add(question);
+                await _dbContext.SaveChangesAsync();
+                response.Message = ResponseMessage.SaveSuccess;
+                response.Data = question;
+            }
+            catch (Exception ex)
+            {
+
+                response.IsSuccess = false;
+                response.Message = ex.Message;
             }
             return response;
         }
