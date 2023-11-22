@@ -6,62 +6,69 @@
                     <input type="text" placeholder="Question" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    <select class="form-select" id="option">
-                        <option value="Text">Text</option>
-                        <option value="MultipleChoice">Multiple Choice</option>
+                    <select class="form-select" id="QuestionType" @bind="QuestionType">
+                        <option value="1">Text</option>
+                        <option value="2">Multiple Choice</option>
                     </select>
                 </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label font-weight-bold">Options:</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" value="Option 1">
+            @if (QuestionType == 2)
+            {
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">Options:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" value="Option 1">
+                            </div>
                         </div>
+                        <input type="text" class="form-control" placeholder="Option 1">
                     </div>
-                    <input type="text" class="form-control" placeholder="Option 1">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" value="Option 1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" value="Option 1">
+                            </div>
                         </div>
+                        <input type="text" class="form-control" placeholder="Option 1">
                     </div>
-                    <input type="text" class="form-control" placeholder="Option 1">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" value="Option 1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" value="Option 1">
+                            </div>
                         </div>
+                        <input type="text" class="form-control" placeholder="Option 1">
                     </div>
-                    <input type="text" class="form-control" placeholder="Option 1">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" value="Option 1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" value="Option 1">
+                            </div>
                         </div>
+                        <input type="text" class="form-control" placeholder="Option 1">
                     </div>
-                    <input type="text" class="form-control" placeholder="Option 1">
                 </div>
-            </div>
+            }
+            else
+            {
+                <input type="text" placeholder="Possible Answer" class="form-control">
+            }
+
         </div>
         <div class="card-footer">
             <div class="mb-3 row">
                 <div class="col-md-6">
-                <label class="form-label">Upload Image:</label>
-                <input type="file" class="form-control" id="image${questionCount}" name="image${questionCount}" accept="image/*">
-            </div>
+                    <label class="form-label">Upload Image:</label>
+                    <input type="file" class="form-control" id="image${questionCount}" name="image${questionCount}" accept="image/*">
+                </div>
                 <div class="col-md-6">
-                <label class="form-label">Upload Video:</label>
-                <input type="file" class="form-control" id="video${questionCount}" name="video${questionCount}" accept="video/*">
+                    <label class="form-label">Upload Video:</label>
+                    <input type="file" class="form-control" id="video${questionCount}" name="video${questionCount}" accept="video/*">
                 </div>
             </div>
         </div>
     </div>
 </form>
-
 
 
