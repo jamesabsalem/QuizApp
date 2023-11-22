@@ -16,17 +16,19 @@ namespace QuizApp.Client.Pages
         [Inject] public IHomeService HomeService { get; set; }
         [Inject] IJSRuntime _jsRuntime { get; set; }
         private UserResponseDTO user = new();
-        private Quiz quiz = new();
+        private Quiz quizEntry = new();
         private List<Quiz> quizzes = new();
         public async void OnClickAddQuiz()
         {
-            var result = await HomeService.CreateQuiz(quiz);
-            if(result.IsSuccess)
+            quizEntry.UserId = user.UserId;
+            var result = await HomeService.CreateQuiz(quizEntry);
+            if (result.IsSuccess)
             {
+                quizEntry.Title = string.Empty;
+                await BindTable();
                 await _jsRuntime.ToastrSuccess(result.Message);
-                navigationManager.NavigateTo("/CreateQuestion");
+                //navigationManager.NavigateTo("/CreateQuestion");
             }
-            
         }
         protected async override Task OnInitializedAsync()
         {
