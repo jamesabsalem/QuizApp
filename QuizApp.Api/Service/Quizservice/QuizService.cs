@@ -135,7 +135,7 @@ namespace QuizApp.Api.Service.Quizservice
             try
             {
                 var quiz = await _dbContext.Quizzes.FindAsync(quizId);
-                if(quiz == null)
+                if (quiz == null)
                 {
                     response.IsSuccess = false;
                     response.Message = ResponseMessage.NotFound;
@@ -147,11 +147,11 @@ namespace QuizApp.Api.Service.Quizservice
                 response.Message = ResponseMessage.UpdateSuccess;
                 response.Data = quiz;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.IsSuccess = false;
                 response.Message = ex.Message;
-                response.Data= null;
+                response.Data = null;
             }
             return response;
         }
@@ -164,6 +164,12 @@ namespace QuizApp.Api.Service.Quizservice
                 {
                     question.CreateDate = DateTime.Now;
                     _dbContext.Questions.Add(question);
+                    await _dbContext.SaveChangesAsync();
+                    foreach (var option in question.Options)
+                    {
+                        option.QuestionId = question.QuestionId;
+                        _dbContext.Options.Add(option);
+                    }
                 }
                 await _dbContext.SaveChangesAsync();
                 response.Message = ResponseMessage.SaveSuccess;
