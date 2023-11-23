@@ -160,17 +160,7 @@ namespace QuizApp.Api.Service.Quizservice
             var response = new ServiceResponse<List<Question>>();
             try
             {
-                foreach (var question in questions)
-                {
-                    question.CreateDate = DateTime.Now;
-                    _dbContext.Questions.Add(question);
-                    await _dbContext.SaveChangesAsync();
-                    foreach (var option in question.Options)
-                    {
-                        option.QuestionId = question.QuestionId;
-                        _dbContext.Options.Add(option);
-                    }
-                }
+                await _dbContext.Questions.AddRangeAsync(questions);
                 await _dbContext.SaveChangesAsync();
                 response.Message = ResponseMessage.SaveSuccess;
                 response.Data = questions;
