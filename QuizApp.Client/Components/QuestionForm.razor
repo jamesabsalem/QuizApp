@@ -6,13 +6,13 @@
                     <input type="text" placeholder="Question" @bind="@question.QuestionText" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    <select class="form-select" id="QuestionType" @bind="QuestionType">
+                    <select class="form-select" id="QuestionType" @bind="@question.QuestionTypeId">
                         <option value="1">Text</option>
                         <option value="2">Multiple Choice</option>
                     </select>
                 </div>
             </div>
-            @if (QuestionType == 2)
+            @if(question.QuestionTypeId == 2)
             {
                 <div class="mb-3">
                     <fieldset>

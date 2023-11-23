@@ -4,8 +4,6 @@ namespace QuizApp.Client.Components
 {
     public partial class QuestionForm
     {
-        public Question question = new();
-        public Option option = new();
-        private int QuestionType { get; set; } = 1;
+        public Question question = new Question { QuestionTypeId = 1};
     }
 }
