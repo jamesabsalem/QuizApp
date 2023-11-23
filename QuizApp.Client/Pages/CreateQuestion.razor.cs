@@ -13,7 +13,10 @@ namespace QuizApp.Client.Pages
         public List<Question> questions { get; set; } = new List<Question>();
         public void OnClickAddQuestion()
         {
-            var question = new Question();
+            var question = new Question
+            {
+                QuestionTypeId = 1
+            };
             questions.Add(question);
         }
        
