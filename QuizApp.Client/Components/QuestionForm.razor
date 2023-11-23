@@ -20,8 +20,8 @@
                         @for (int i = 1; i <= 4; i++)
                         {
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="optionRadio" id=@($"option{i}") value=@($"Option{i}")>
-                                <input type="text" class="form-control" placeholder=@($"Option {i}")>
+                                <input class="form-check-input" type="radio" name="optionRadio" @bind-value="@question.Options[1].IsAnswer">
+                                <input type="text" class="form-control" placeholder=@($"Option {i}") @bind="@question.Options[1].OptionText">
                             </div>
                         }
                        @*  <div class="form-check mb-2">
