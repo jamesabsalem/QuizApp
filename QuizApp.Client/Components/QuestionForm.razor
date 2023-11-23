@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="mb-3 row">
                 <div class="col-md-8">
-                    <input type="text" placeholder="Question" class="form-control">
+                    <input type="text" placeholder="Question" @bind="@question.QuestionText" class="form-control">
                 </div>
                 <div class="col-md-4">
                     <select class="form-select" id="QuestionType" @bind="QuestionType">
@@ -15,40 +15,27 @@
             @if (QuestionType == 2)
             {
                 <div class="mb-3">
-                    <label class="form-label font-weight-bold">Options:</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" value="Option 1">
-                            </div>
+                    <fieldset>
+                        <label class="form-label font-weight-bold">Options:</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="optionRadio" id="option1" value="Option1">
+                            <input type="text" class="form-control" placeholder="Option 1">
                         </div>
-                        <input type="text" class="form-control" placeholder="Option 1">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" value="Option 1">
-                            </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="optionRadio" id="option2" value="Option2">
+                            <input type="text" class="form-control" placeholder="Option 2">
                         </div>
-                        <input type="text" class="form-control" placeholder="Option 1">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" value="Option 1">
-                            </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="optionRadio" id="option3" value="Option3">
+                            <input type="text" class="form-control" placeholder="Option 3">
                         </div>
-                        <input type="text" class="form-control" placeholder="Option 1">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" value="Option 1">
-                            </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="optionRadio" id="option4" value="Option4">
+                            <input type="text" class="form-control" placeholder="Option 4">
                         </div>
-                        <input type="text" class="form-control" placeholder="Option 1">
-                    </div>
+                    </fieldset>
                 </div>
+
             }
             else
             {
