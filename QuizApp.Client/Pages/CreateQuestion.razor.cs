@@ -6,14 +6,16 @@ namespace QuizApp.Client.Pages
 {
     public partial class CreateQuestion
     {
+        [Parameter]
+        public string quizId { get; set; }
         [Inject] public IHomeService HomeService { get; set; }
+        [Inject] public NavigationManager navigationManager { get; set; }
         public List<Question> questions { get; set; } = new List<Question>();
-        [Parameter] public int QuizId { get; set; }
         public void OnClickAddQuestion()
         {
             var question = new Question();
             questions.Add(question);
         }
-        
+       
     }
 }

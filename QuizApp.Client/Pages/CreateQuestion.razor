@@ -1,8 +1,9 @@
-﻿@* @page "/CreateQuestion" *@
-@page "/CreateQuestion/{QuizId}"
+﻿@page "/CreateQuestion"
+@page "/CreateQuestion/{quizId}"
 
 <div class="container mt-5">
     <h2>Create Your Quiz</h2>
+    <p>Query String Parameter: @quizId</p>
     @foreach (var question in questions)
     {
         <QuestionForm></QuestionForm>
