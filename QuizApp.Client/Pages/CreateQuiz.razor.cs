@@ -26,7 +26,8 @@ namespace QuizApp.Client.Pages
             {
                 quizEntry.Title = string.Empty;
                 await _jsRuntime.ToastrSuccess(result.Message);
-                navigationManager.NavigateTo("/CreateQuestion");
+                var quizId = result.Data.QuizId;
+                navigationManager.NavigateTo($"/CreateQuestion/{quizId}");
             }
         }
         protected async override Task OnInitializedAsync()

@@ -13,6 +13,7 @@ namespace QuizApp.Client.Components
         [Parameter]
         public Quiz Quiz { get; set; }
         public Question Question { get; set; }
+        public Option Option { get; set; }
         public List<Question> Questions { get; set; }
         public bool IsModalShow { get; set; } = false;
         public bool IsCongratulationsShow { get; set; } = false;
