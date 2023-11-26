@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QuizApp.Shared.Models;
-
 namespace QuizApp.Api.ModelConfigurations
 {
     public class QuizConfig : IEntityTypeConfiguration<Quiz>
@@ -17,6 +16,7 @@ namespace QuizApp.Api.ModelConfigurations
                 .HasForeignKey(q => q.QuizId);
 
             builder.Property(q => q.UserId).IsRequired();
+            builder.Property(q => q.IsPublished).HasDefaultValue(false);
             builder.HasOne(q => q.User)
                 .WithMany()
                 .HasForeignKey(u => u.UserId)

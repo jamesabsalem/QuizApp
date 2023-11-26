@@ -7,5 +7,9 @@ namespace QuizApp.Client.Services.HomeService
     {
         Task<ServiceResponse<IEnumerable<Quiz>>> GetAll();
         Task<ServiceResponse<IEnumerable<Question>>> GetQuestion(int quizId);
+        Task<ServiceResponse<IEnumerable<Quiz>>> GetQuizzesByUser(int userId);
+        Task<ServiceResponse<Quiz>> CreateQuiz(Quiz quiz);
+        Task<ServiceResponse<Quiz>> QuizPublished(int quizId);
+        Task<ServiceResponse<List<Question>>> CreateQuestions(List<Question> questions);
     }
 }

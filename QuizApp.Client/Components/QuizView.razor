@@ -1,7 +1,7 @@
 ﻿
 <div class="d-grid col-lg-3 col-md-6">
     <div class="card border-light mb-3" style="max-width: 20rem;">
-        @*   <div class="card-header">@quiz.QuizCode</div> *@
+        <div class="card-header"><b>Code: </b>@Quiz.QuizCode</div>
         <div class="card-body">
             <h4 class="card-title">@Quiz.Title</h4>
         </div>
@@ -17,7 +17,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <h5 class="modal-title w-100">Quiz</h5>
+                    <h5 class="modal-title w-100">Score : @ScoreCount</h5>
                     <button type="button" class="btn-close" @onclick="CloseModal"></button>
                 </div>
                 <div class="modal-body">
@@ -38,7 +38,38 @@
                     <div class="card-footer text-muted">
                         @(QuestionIndex + 1) of @Questions.Count() Questions
                     </div>
-                    <button type="button" class="btn btn-primary" @onclick="OnClickNext">Next</button>
+                    <button type="button" class="btn btn-primary" @onclick="OnClickNext">
+                        @if ((QuestionIndex + 1) == Questions.Count())
+                        {
+                            <span>Finish</span>
+                        }
+                        else
+                        {
+                            <span>Next</span>
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (IsCongratulationsShow)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="height: 80vh;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Congratulations!</h5>
+                    <button type="button" class="btn-close" @onclick="CloseCongratulationsModal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success mb-2" role="alert">
+                        You have completed the quiz.
+                    </div>
+                    <div class="mb-3">
+                        Your Score: 0
+                    </div>
                 </div>
             </div>
         </div>

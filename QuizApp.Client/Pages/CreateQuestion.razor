@@ -1,10 +1,62 @@
 ﻿@page "/CreateQuestion"
+@page "/CreateQuestion/{quizId}"
 
 <div class="container mt-5">
     <h2>Create Your Quiz</h2>
+    <p>Query String Parameter: @quizId</p>
     @foreach (var question in questions)
     {
-        <QuestionForm></QuestionForm>
+        <form id="dynamicQuizForm">
+            <div class="card border-secondary mb-5">
+                <div class="card-body">
+                    <div class="mb-3 row">
+                        <div class="col-md-8">
+                            <input type="text" placeholder="Question" @bind="@question.QuestionText" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select" id="QuestionType" @bind="@question.QuestionTypeId">
+                                <option value="1">Text</option>
+                                <option value="2">Multiple Choice</option>
+                            </select>
+                        </div>
+                    </div>
+                    @if (question.QuestionTypeId == 2)
+                    {
+                        <div class="mb-3">
+                            <fieldset>
+                                <label class="form-label font-weight-bold">Options:</label>
+                                @for (int i = 1; i <= 4; i++)
+                                {
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="optionRadio" value="@($"Option {i}")">
+                                        <input type="text" class="form-control" placeholder=@($"Option {i}")>
+                                    </div>
+                                }
+                            </fieldset>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <input type="text" placeholder="Possible Answer" class="form-control">
+                    }
+
+                </div>
+                <div class="card-footer">
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Image:</label>
+                            <input type="file" class="form-control" id="image${questionCount}" name="image${questionCount}" accept="image/*">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Upload Video:</label>
+                            <input type="file" class="form-control" id="video${questionCount}" name="video${questionCount}" accept="video/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     }
     <button type="button" class="btn btn-primary mt-3" @onclick="OnClickAddQuestion" >Add Question</button>
     <button type="button" class="btn btn-success mt-3">Submit Quiz</button>

@@ -1,8 +1,15 @@
 ﻿@page "/"
-
 <PageTitle>Home</PageTitle>
 
-
+@* <AuthorizeView>
+    <Authorized>
+        <p>User Id - @user.UserId</p>
+        <p>User Id - @user.UserName</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>Please log in to view your profile.</p>
+    </NotAuthorized>
+</AuthorizeView> *@
 @if (QuizList != null)
 {
     <div class="container">
@@ -14,4 +21,5 @@
         </div>
     </div>
 }
+
 

@@ -12,38 +12,31 @@
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
-                @* <li class="nav-item">
-                    <a class="nav-link" href="/CreateQuiz">Create Quiz</a>
-                </li> *@
-                <li class="nav-item">
-                    <div class="mx-3">
-                        <NavLink href="/CreateQuiz">
-                            <button class="btn btn-success my-2 my-sm-0 w-auto" type="submit">Create Quiz</button>
-                        </NavLink>
-                    </div>
-                </li>
-                @* <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-                </li> *@
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item">
+                            <div class="mx-3">
+                                <NavLink href="/CreateQuiz">
+                                    <button class="btn btn-success my-2 my-sm-0 w-auto" type="submit">Create Quiz</button>
+                                </NavLink>
+                            </div>
+                        </li>
+                    </Authorized>
+                </AuthorizeView>
             </ul>
             <form class="d-flex">
                 <input class="form-control me-sm-2" type="search" placeholder="Search">
                 @* <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> *@
             </form>
-            <div class="mx-3"><NavLink href="/SignIn"><button class="btn btn-secondary my-2 my-sm-0 w-auto" type="submit">Sign In</button></NavLink></div>
+            <AuthorizeView>
+                <Authorized>
+                    <button class="btn btn-secondary my-2 my-sm-0 w-auto" type="submit" @onclick="OnClickSignOut">Sign Out</button>
+                </Authorized>
+                <NotAuthorized>
+                    <button class="btn btn-secondary my-2 my-sm-0 w-auto" type="submit" @onclick="OnClickSignIn">Sign In</button>
+                </NotAuthorized>
+                
+            </AuthorizeView>
         </div>
     </div>
 </nav>

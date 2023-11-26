@@ -26,5 +26,29 @@ namespace QuizApp.Api.Controllers
             var response = await _quizService.GetQuestions(quizId);
             return Ok(response);
         }
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<Quiz>>> GetQuizzesByUser(int userId)
+        {
+            var response = await _quizService.GetQuizzesByUser(userId);
+            return Ok(response);
+        }
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<Quiz>>> CreateQuize([FromBody] Quiz quiz)
+        {
+            var response = await _quizService.CreateQuize(quiz);
+            return Ok(response);  
+        }
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<Quiz>>> QuizPublished(int quizId)
+        {
+            var response = await _quizService.QuizPublished(quizId);
+            return Ok(response);
+        }
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<List<Question>>>> CreateQuestions([FromBody] List<Question> questions)
+        {
+            var response = await _quizService.CreateQuestions(questions);
+            return Ok(response);
+        }
     }
 }
